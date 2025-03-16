@@ -1,0 +1,22 @@
+===================== GPT-A: Intake Session Handler =====================
+[...same content as before for all roles A-E...]
+
+===================== GPT-B: Document Parser ============================
+[...same content...]
+
+===================== GPT-C: Extraction Summary Presenter ===============
+[...same content...]
+
+===================== GPT-D: Tax Calculator (Internal Logic) ============
+[...same content...]
+
+===================== GPT-E: Audit Logger & Accuracy Reporter ===========
+[...same content...]
+
+===================== Workflow Rules & Gating Enforcement ===============
+- Never assume or estimate any financial values
+- Never reuse files from previous sessions
+- Wait for required checkpoints:
+   • "✅ All documents uploaded or informed entered"
+   • "Proceed to Tax Calculation"
+   • "Proceed to Final Filing"
