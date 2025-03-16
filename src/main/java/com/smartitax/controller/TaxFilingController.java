@@ -45,4 +45,16 @@ public class TaxFilingController {
     public ResponseEntity<?> saveAudit(@RequestBody Map<String, Object> auditLog) {
         return ResponseEntity.ok(Map.of("status", "logged"));
     }
+
+    /*
+      End Session - Clear session data
+      1. User Prompt to do that
+      2. Session timeout after 1 hr of inactive User session
+     */
+    @PostMapping("/end-session")
+    public ResponseEntity<?> endSession(@RequestBody Map<String, String> request) {
+        String sessionId = request.get("session_id");
+        workflowService.endSession(sessionId);
+        return ResponseEntity.ok(Map.of("status", "ended"));
+    }
 }

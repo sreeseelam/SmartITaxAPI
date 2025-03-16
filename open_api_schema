@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: Smart ITax Workflow API
+  version: 1.0.0
+servers:
+  - url: https://smartitaxapi.onrender.com
+    description: Smart ITax Enforcement Backend
+paths:
+  /start-session:
+    post:
+      operationId: startSession
+      summary: Start New Tax Filing Session
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id:
+                  type: string
+      responses:
+        '200':
+          description: Session Started
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  session_id:
+                    type: string
+
+  /validate-extractions:
+    post:
+      operationId: validateExtractions
+      summary: Validate extracted data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id: { type: string }
+                taxpayer_name: { type: string }
+                extracted_data: { type: object, additionalProperties: { type: number } }
+                source_map: { type: object, additionalProperties: { type: string } }
+      responses:
+        '200':
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  validation_passed: { type: boolean }
+                  missing_fields: { type: array, items: { type: string } }
+                  warnings: { type: array, items: { type: string } }
+
+  /calculate-tax:
+    post:
+      operationId: calculateTax
+      summary: Internal Tax Calculation Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id: { type: string }
+                taxpayer_name: { type: string }
+                income: { type: object, additionalProperties: { type: number } }
+                deductions: { type: object, additionalProperties: { type: number } }
+                credits: { type: object, additionalProperties: { type: number } }
+      responses:
+        '200':
+          description: Tax Calculation Result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_tax_due: { type: number }
+                  refund_amount: { type: number }
+                  effective_rate: { type: number }
+
+  /audit-log-save:
+    post:
+      operationId: auditLogSave
+      summary: Archive extraction audit logs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id: { type: string }
+                audit_fields:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      label: { type: string }
+                      value: { type: number }
+                      source: { type: string }
+                      accuracy: { type: string }
+                      comment: { type: string }
+      responses:
+        '200':
+          description: Audit logged
