@@ -3,7 +3,7 @@ info:
   title: Smart ITax Workflow API
   version: 1.0.0
 servers:
-  - url: https://smart_itax_workflow_api.onrender.com
+  - url: https://smartitaxapi.onrender.com
     description: Smart ITax Enforcement Backend
 paths:
   /start-session:
