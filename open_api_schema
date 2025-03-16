@@ -31,6 +31,31 @@ paths:
                   session_id:
                     type: string
 
+  /end-session:
+    post:
+      operationId: endSession
+      summary: End Session and Trigger Cleanup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id:
+                  type: string
+      responses:
+        '200':
+          description: Session Ended and Cleanup Triggered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  session_id:
+                    type: string
+
   /validate-extractions:
     post:
       operationId: validateExtractions
