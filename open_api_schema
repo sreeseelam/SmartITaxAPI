@@ -9,6 +9,7 @@ paths:
   /start-session:
     post:
       operationId: startSession
+      x-openai-router-path: /start-session
       summary: Start New Tax Filing Session
       requestBody:
         content:
@@ -34,6 +35,7 @@ paths:
   /end-session:
     post:
       operationId: endSession
+      x-openai-router-path: /end-session
       summary: End Session and Trigger Cleanup
       requestBody:
         content:
@@ -59,6 +61,7 @@ paths:
   /validate-extractions:
     post:
       operationId: validateExtractions
+      x-openai-router-path: /validate-extractions
       summary: Validate extracted data
       requestBody:
         content:
@@ -85,6 +88,7 @@ paths:
   /calculate-tax:
     post:
       operationId: calculateTax
+      x-openai-router-path: /calculate-tax
       summary: Internal Tax Calculation Request
       requestBody:
         content:
@@ -112,6 +116,7 @@ paths:
   /audit-log-save:
     post:
       operationId: auditLogSave
+      x-openai-router-path: /audit-log-save
       summary: Archive extraction audit logs
       requestBody:
         content:
