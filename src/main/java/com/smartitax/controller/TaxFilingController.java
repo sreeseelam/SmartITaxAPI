@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
 public class TaxFilingController {
 
     private final TaxWorkflowService workflowService;
